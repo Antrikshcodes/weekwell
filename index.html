@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7f4">
+  <meta name="description" content="A simple, calm weekly timetable for classes, study sessions, and everything in between.">
+  <title>Weekwell — Your weekly timetable</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Weekwell home"><span class="brand-mark">w</span><span>weekwell</span></a>
+      <div class="side-label">WORKSPACE</div>
+      <button class="nav-item active"><span class="nav-icon">▦</span> My timetable</button>
+      <button class="nav-item" id="todayNav"><span class="nav-icon">◷</span> Today</button>
+      <div class="side-label week-label">YOUR WEEK</div>
+      <div class="mini-week" id="miniWeek"></div>
+      <div class="sidebar-bottom">
+        <div class="help-card"><div class="help-icon">✳</div><strong>Make room for what matters.</strong><p>A little structure goes a long way.</p></div>
+        <div class="profile"><div class="avatar">A</div><div><strong>My schedule</strong><span>Personal workspace</span></div><span class="dots">···</span></div>
+      </div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar"><div class="breadcrumbs"><span>Workspace</span><span class="crumb-slash">/</span><strong>Timetable</strong></div><div class="top-actions"><button class="icon-button" id="exportBtn" aria-label="Export timetable" title="Export timetable">↥</button><button class="profile-small">A</button></div></header>
+      <div class="page-wrap">
+        <section class="heading-row"><div><div class="eyebrow"><span class="live-dot"></span> YOUR WEEK, AT A GLANCE</div><h1>A week with <span>intention.</span></h1><p class="subheading">A little rhythm for your everyday.</p></div><button class="primary-button" id="addBtn"><span class="plus">＋</span> Add a class</button></section>
+        <section class="week-toolbar"><div class="week-nav"><button class="round-button" id="prevWeek" aria-label="Previous week">‹</button><button class="round-button" id="nextWeek" aria-label="Next week">›</button><h2 id="weekTitle"></h2><button class="today-button" id="thisWeek">Today</button></div><div class="toolbar-right"><span class="timezone">◷ &nbsp;Local time</span><div class="view-toggle"><button class="selected">Week</button><button disabled title="Coming soon">Day</button></div></div></section>
+        <section class="schedule-card"><div class="schedule-scroll"><div class="schedule-grid" id="scheduleGrid"></div></div><div class="schedule-footer"><div><span class="legend-dot"></span> Your classes & plans</div><span id="weekSummary">A good week starts with a plan.</span></div></section>
+        <section class="bottom-note"><span class="sparkle">✳</span><span>Make space for focus, breaks, and everything in between.</span><button id="bottomAdd">Add to your week <span>↗</span></button></section>
+      </div>
+    </main>
+  </div>
+  <dialog id="eventDialog"><form id="eventForm"><div class="dialog-top"><div><div class="eyebrow">YOUR SCHEDULE</div><h2 id="dialogTitle">Add a class</h2></div><button type="button" class="close-button" id="closeDialog" aria-label="Close">×</button></div><input type="hidden" id="eventId"><label>Class or activity<input id="eventName" placeholder="e.g. Studio seminar" required maxlength="48"></label><div class="form-row"><label>Day<select id="eventDay"></select></label><label>Color<select id="eventColor"><option value="lavender">Lavender</option><option value="mint">Mint</option><option value="peach">Peach</option><option value="blue">Sky blue</option><option value="lemon">Lemon</option><option value="rose">Rose</option></select></label></div><div class="form-row"><label>Starts<input id="eventStart" type="time" value="09:00" required></label><label>Ends<input id="eventEnd" type="time" value="10:00" required></label></div><label class="location-label">Location <span>Optional</span><input id="eventLocation" placeholder="Room, building, or link" maxlength="48"></label><div class="form-error" id="formError"></div><div class="dialog-actions"><button type="button" id="deleteBtn" class="delete-button hidden">Delete</button><span class="action-spacer"></span><button type="button" class="cancel-button" id="cancelBtn">Cancel</button><button class="primary-button" type="submit" id="saveBtn">Add to week</button></div></form></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
